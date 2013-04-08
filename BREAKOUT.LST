@@ -1,0 +1,17 @@
+Hidem
+Deffill 0
+Input "entrez les coordonnees de la balle ainsi que les composantes du vecteur vitesse initial :",A%,B%,C%,D%
+Q$=String$(14,String$(2,String$(80,0))+String$(12,String$(20,Chr$(127)+Chr$(255)+Chr$(255)+Chr$(252))))+String$(16320,0)
+C$=Mki$(8)+Mki$(8)+Mki$(1)+Mki$(2048)+Mki$(15872)+Mki$(32512)+Mki$(32512)+Mki$(65408)+Mki$(32512)+Mki$(32512)+Mki$(15872)+Mki$(2048)+Mki$(0)
+Sput Q$
+Repeat
+  Put A%,B%,C$,7
+  Bmove Xbios(2)+390*80,Xbios(2)+380*80,800
+  Rbox Mousex,380,Mousex+79,389
+  C%=(1+2*(A%<10 Or A%>629))*((Abs(Mousex+35-A%)>20 And B%>364)*6*Sin((Mousex+35-A%)/28)-(Abs(Mousex+35-A%)<21 Or B%<365)*C%)
+  D%=(1+2*((B%<9 Or B%>364) Xor (Point(A%+1,B%+1)=1 Or Point(A%+1,B%+8)=1 Or Point(A%+8,B%+1)=1 Or Point(A%+8,B%+8)=1)))*(-(Abs(Mousex+35-A%)>20 And B%>364)*6*Cos((Mousex+35-A%)/28)-(Abs(Mousex+35-A%)<21 Or B%<365)*D%)
+  Fill -1-(A%+5)*(Point(A%+1,B%+1)=1 Or Point(A%+1,B%+8)=1 Or Point(A%+8,B%+1)=1 Or Point(A%+8,B%+8)=1),-1-(B%+5)*(Point(A%+1,B%+1)=1 Or Point(A%+1,B%+8)=1 Or Point(A%+8,B%+1)=1 Or Point(A%+8,B%+8)=1)
+  Put A%,B%,C$,4
+  Add A%,C%
+  Add B%,D%
+Until (B%>364 And Abs(Mousex+35-A%)>50) Or Mousek
